@@ -21,3 +21,7 @@ The single source of truth for ColorCanvas UI values: design tokens, typography,
 
 - Depends on nothing else in this monorepo — the design system must be usable without pulling in domain or application logic.
 - Consumed by `ColorCanvasUI`. Must never depend on `ColorCanvasUI`, `ColorCanvasApplication`, or `ColorCanvasDomain`.
+
+## Sprint 001
+
+- `DesignTokens` — an empty namespace enum. It exists only as the anchor point Sprint 002 (Design System) extends with real color/typography/spacing/radius/elevation/animation tokens; Sprint 001 intentionally adds no token values.

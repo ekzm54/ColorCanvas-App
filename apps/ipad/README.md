@@ -32,6 +32,6 @@ xcodegen generate
 open ColorCanvas.xcodeproj
 ```
 
-## Sprint 000 Scope
+## Sprint 001 Scope
 
-The app currently renders only `BootstrapRootView` from `ColorCanvasUI` — a placeholder screen confirming the app target, local SwiftPM package wiring, and build pipeline work end to end. No product screens (Home, Gallery, Studio, Canvas, Safe Color, Export) exist yet.
+`ColorCanvasApp` is now the composition root: it constructs a `DependencyContainer` (from `ColorCanvasApplication`) with concrete `OSLogger` (`ColorCanvasShared`) and `UserDefaultsPreferencesRepository` (`ColorCanvasData`) instances, then renders `RootView` (`ColorCanvasUI`) bound to the container's `AppRouter`. `RootView` still only shows `BootstrapRootView` — a placeholder screen confirming the app target, local SwiftPM package wiring, navigation, and dependency injection work end to end. No product screens (Home, Gallery, Studio, Canvas, Safe Color, Export) exist yet.

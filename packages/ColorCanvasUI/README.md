@@ -19,6 +19,10 @@ SwiftUI views and reusable screen composition for ColorCanvas. Consumes `ColorCa
 
 ## Dependency Rules
 
-- Depends on `ColorCanvasApplication` and `ColorCanvasDesignSystem`, per the Book 8 module boundary rule: `ColorCanvasUI -> ColorCanvasApplication -> ColorCanvasDomain`.
+- Depends on `ColorCanvasApplication` (declared in `Package.swift` as of Sprint 001, for `Route`/`AppRouter`) and, once Sprint 002 lands, `ColorCanvasDesignSystem` — per the Book 8 module boundary rule: `ColorCanvasUI -> ColorCanvasApplication -> ColorCanvasDomain`.
 - Consumed by `apps/ipad`. Nothing in this monorepo may depend on `ColorCanvasUI`.
-- No package dependencies are declared in `Package.swift` yet — `BootstrapRootView` needs none. Add `ColorCanvasApplication`/`ColorCanvasDesignSystem` as concrete `Package.swift` dependencies only when a Sprint actually introduces code that imports them.
+- `ColorCanvasDesignSystem` is not yet a declared `Package.swift` dependency — it has no tokens to consume until Sprint 002. Dependencies are added only when a Sprint introduces code that actually imports them.
+
+## Sprint 001
+
+- `RootView` — hosts a `NavigationStack` bound to `AppRouter.path` and a `.sheet` bound to `AppRouter.presentedModal`, both currently rendering `BootstrapRootView`. This proves the router/navigation wiring end to end without introducing any product screen.

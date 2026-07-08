@@ -51,6 +51,10 @@ targets:
         SUPPORTS_MACCATALYST: "NO"
     dependencies:
       - package: ColorCanvasUI
+      - package: ColorCanvasApplication
+      - package: ColorCanvasDomain
+      - package: ColorCanvasShared
+      - package: ColorCanvasData
 
 schemes:
   ColorCanvas:

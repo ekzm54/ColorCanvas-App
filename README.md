@@ -41,4 +41,7 @@ scripts/format.sh   # swiftformat (pass --check to verify without writing)
 
 ## Status
 
-Sprint 000 (Project Bootstrap) is complete: repository structure, package skeletons, tooling, and CI are in place. No product features are implemented yet — see `docs/sprints/Sprint-Index.md` in the Docs repository for what comes next.
+- Sprint 000 (Project Bootstrap) is complete: repository structure, package skeletons, tooling, and CI are in place.
+- Sprint 001 (Foundation) is complete: `AppEnvironment`, `DependencyContainer`, `AppRouter`/`Route`, `ScreenState`, `AppError`/`ErrorMessageMapper`, a `Logging` skeleton (`OSLogger`), a `PreferencesRepository` skeleton (`UserDefaultsPreferencesRepository`), a `DesignTokens` namespace anchor, and a `RootView` wired to the composition root in `apps/ipad`.
+
+No product features are implemented yet — see `docs/sprints/Sprint-Index.md` in the Docs repository for what comes next (Sprint 002 — Design System).

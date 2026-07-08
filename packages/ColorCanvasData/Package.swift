@@ -10,8 +10,11 @@ let package = Package(
     products: [
         .library(name: "ColorCanvasData", targets: ["ColorCanvasData"])
     ],
+    dependencies: [
+        .package(path: "../ColorCanvasDomain")
+    ],
     targets: [
-        .target(name: "ColorCanvasData"),
+        .target(name: "ColorCanvasData", dependencies: ["ColorCanvasDomain"]),
         .testTarget(name: "ColorCanvasDataTests", dependencies: ["ColorCanvasData"])
     ]
 )

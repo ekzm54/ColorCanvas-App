@@ -21,3 +21,7 @@ Repository implementations and the FileSystem adapter. This is the outermost dat
 - Depends on `ColorCanvasDomain` for the repository protocols it implements, per Book 8: `ColorCanvasData -> Document / FileSystem Adapter`.
 - Never depends on `ColorCanvasUI` or `ColorCanvasApplication`.
 - Consumed only via the protocols in `ColorCanvasDomain`; the app composition root injects the concrete repository — `ColorCanvasApplication` never imports this package directly, per `ADR-002-Repository-Pattern` ("UI and ViewModels must not access storage, file system, document packages, or caches directly").
+
+## Sprint 001
+
+- `UserDefaultsPreferencesRepository` — a safe-default (`bool(forKey:default:)` always falls back to the caller-supplied default when the key is absent) `UserDefaults`-backed implementation of `ColorCanvasDomain`'s `PreferencesRepository`. Constructed only at the app composition root (`apps/ipad`) and injected into `ColorCanvasApplication`'s `DependencyContainer`.

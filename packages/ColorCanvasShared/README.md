@@ -8,7 +8,7 @@ Cross-cutting utilities with no product-specific meaning: common extensions, err
 
 - Generic Swift extensions (Foundation-level helpers).
 - Shared error/result types.
-- Logging primitives (the concrete logger implementation is Sprint 001's `AppEnvironment`/`DependencyContainer` work; this package may hold the protocol/utility pieces that support it).
+- Logging primitives: `Logging` protocol, `LogLevel`, and the concrete `OSLogger` (Sprint 001), consumed by `ColorCanvasApplication`'s `AppEnvironment`/`DependencyContainer` and constructed at the app composition root.
 
 ## What Must Not Belong Here
 

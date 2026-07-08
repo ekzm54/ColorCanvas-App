@@ -7,9 +7,10 @@ Platform-agnostic business rules for ColorCanvas: domain entities, value types, 
 ## What Belongs Here
 
 - Domain entities and value types (e.g. project metadata, palette models, region identifiers).
-- Repository protocols (storage/document contracts consumed by `ColorCanvasApplication`).
+- Repository protocols (storage/document contracts consumed by `ColorCanvasApplication`) — e.g. `PreferencesRepository` (Sprint 001).
 - Engine protocols (rendering/safe-color/export contracts consumed by `ColorCanvasApplication`).
 - Pure domain logic and validation rules with no I/O.
+- `AppError` (Sprint 001) — the canonical app-wide error type. Outer layers map their own failures (FileManager errors, engine failures) to `AppError` before crossing into `ColorCanvasApplication`.
 
 ## What Must Not Belong Here
 

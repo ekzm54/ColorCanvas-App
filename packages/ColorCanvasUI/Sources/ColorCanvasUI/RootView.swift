@@ -31,7 +31,7 @@ public struct RootView: View {
     }
 
     @ViewBuilder
-    private func destination(for route: Route) -> some View {
+    func destination(for route: Route) -> some View {
         switch route {
         case .home:
             makeHomeView()

@@ -19,6 +19,6 @@ public struct HomeViewData: Equatable {
     }
 
     public var isEmpty: Bool {
-        continueProject == nil && featuredTemplates.isEmpty && recentProjects.isEmpty
+        continueProject == nil && featuredTemplates.isEmpty && categories.isEmpty && recentProjects.isEmpty
     }
 }

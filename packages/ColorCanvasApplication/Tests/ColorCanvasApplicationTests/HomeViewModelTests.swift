@@ -51,6 +51,20 @@ final class HomeViewModelTests: XCTestCase {
         XCTAssertEqual(sut.state, .empty)
     }
 
+    func testLoadTransitionsToReadyWhenOnlyCategoriesArePresent() async {
+        let data = HomeViewData(
+            continueProject: nil,
+            featuredTemplates: [],
+            categories: [sampleCategory],
+            recentProjects: []
+        )
+        let sut = HomeViewModel(useCases: FakeHomeUseCases(result: .success(data)), router: AppRouter())
+
+        await sut.load()
+
+        XCTAssertEqual(sut.state, .ready(data), "categories alone are content — Home must not show the empty state")
+    }
+
     func testLoadTransitionsToErrorOnAppErrorFailure() async {
         let sut = HomeViewModel(useCases: FakeHomeUseCases(result: .failure(AppError.unknown)), router: AppRouter())
 

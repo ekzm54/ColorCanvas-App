@@ -16,16 +16,19 @@ public struct DefaultHomeUseCases: HomeUseCases {
     }
 
     public func loadHome() async throws -> HomeViewData {
-        async let continueProject = projectRepository.fetchMostRecentProject()
-        async let recentProjects = projectRepository.fetchRecentProjects(limit: Self.recentProjectsLimit)
+        async let continueProjectResult = projectRepository.fetchMostRecentProject()
+        async let recentProjectsResult = projectRepository.fetchRecentProjects(limit: Self.recentProjectsLimit)
         async let featuredTemplates = templateRepository.fetchFeaturedTemplates()
         async let categories = templateRepository.fetchCategories()
 
+        let continueProject = try await continueProjectResult
+        let recentProjects = try await recentProjectsResult
+
         return HomeViewData(
-            continueProject: try await continueProject,
+            continueProject: continueProject,
             featuredTemplates: try await featuredTemplates,
             categories: try await categories,
-            recentProjects: try await recentProjects
+            recentProjects: recentProjects.filter { $0.id != continueProject?.id }
         )
     }
 }

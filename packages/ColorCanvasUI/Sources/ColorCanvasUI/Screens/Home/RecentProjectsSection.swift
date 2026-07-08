@@ -12,6 +12,7 @@ struct RecentProjectsSection: View {
             Text("Recent Projects")
                 .font(DesignTokens.Typography.headline)
                 .foregroundStyle(DesignTokens.Color.textPrimary)
+                .accessibilityAddTraits(.isHeader)
             ForEach(projects) { project in
                 Button(action: { onSelect(project) }) {
                     ProjectCardSkeleton(title: project.title)

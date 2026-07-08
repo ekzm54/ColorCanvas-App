@@ -18,4 +18,13 @@ final class RootViewTests: XCTestCase {
         )
         _ = view.body
     }
+
+    func testHomeDestinationDoesNotCrash() {
+        let view = RootView(
+            router: AppRouter(),
+            homeUseCases: FakeHomeUseCases(),
+            errorMessageMapper: DefaultErrorMessageMapper()
+        )
+        _ = view.destination(for: .home).body
+    }
 }

@@ -11,6 +11,7 @@ struct FeaturedTemplateSection: View {
             Text("Featured Templates")
                 .font(DesignTokens.Typography.headline)
                 .foregroundStyle(DesignTokens.Color.textPrimary)
+                .accessibilityAddTraits(.isHeader)
             ScrollView(.horizontal, showsIndicators: false) {
                 HStack(spacing: DesignTokens.Space.md) {
                     ForEach(templates) { template in

@@ -11,6 +11,7 @@ struct CategorySection: View {
             Text("Categories")
                 .font(DesignTokens.Typography.headline)
                 .foregroundStyle(DesignTokens.Color.textPrimary)
+                .accessibilityAddTraits(.isHeader)
             ScrollView(.horizontal, showsIndicators: false) {
                 HStack(spacing: DesignTokens.Space.sm) {
                     ForEach(categories) { category in
@@ -39,6 +40,7 @@ private struct CategoryChip: View {
                 )
         }
         .buttonStyle(.plain)
+        .accessibilityLabel(title)
     }
 }
 

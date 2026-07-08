@@ -4,6 +4,7 @@ import SwiftUI
 
 public struct HomeView: View {
     @StateObject private var viewModel: HomeViewModel
+    @Environment(\.dynamicTypeSize) private var dynamicTypeSize
 
     public init(viewModel: HomeViewModel) {
         _viewModel = StateObject(wrappedValue: viewModel)
@@ -69,18 +70,42 @@ public struct HomeView: View {
         .background(DesignTokens.Color.background)
     }
 
+    @ViewBuilder
     private var header: some View {
-        HStack {
-            Text("ColorCanvas")
-                .font(DesignTokens.Typography.largeTitle)
-                .foregroundStyle(DesignTokens.Color.textPrimary)
-            Spacer()
-            IconButton(systemImageName: "magnifyingglass", accessibilityLabel: "Search") {
-                viewModel.searchTapped()
+        if dynamicTypeSize.isAccessibilitySize {
+            VStack(alignment: .leading, spacing: DesignTokens.Space.sm) {
+                headerTitle
+                HStack(spacing: DesignTokens.Space.sm) {
+                    Spacer()
+                    searchButton
+                    settingsButton
+                }
             }
-            IconButton(systemImageName: "gearshape", accessibilityLabel: "Settings") {
-                viewModel.settingsTapped()
+        } else {
+            HStack {
+                headerTitle
+                Spacer()
+                searchButton
+                settingsButton
             }
+        }
+    }
+
+    private var headerTitle: some View {
+        Text("ColorCanvas")
+            .font(DesignTokens.Typography.largeTitle)
+            .foregroundStyle(DesignTokens.Color.textPrimary)
+    }
+
+    private var searchButton: some View {
+        IconButton(systemImageName: "magnifyingglass", accessibilityLabel: "Search") {
+            viewModel.searchTapped()
+        }
+    }
+
+    private var settingsButton: some View {
+        IconButton(systemImageName: "gearshape", accessibilityLabel: "Settings") {
+            viewModel.settingsTapped()
         }
     }
 }

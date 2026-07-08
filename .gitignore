@@ -17,5 +17,8 @@ DerivedData/
 # macOS
 .DS_Store
 
+# Local tooling
+.claude/
+
 # SwiftLint / SwiftFormat caches
 .swiftlint_cache/

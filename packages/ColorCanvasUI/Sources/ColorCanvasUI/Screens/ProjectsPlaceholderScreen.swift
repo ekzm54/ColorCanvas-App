@@ -1,5 +1,6 @@
 import ColorCanvasApplication
 import ColorCanvasDesignSystem
+import ColorCanvasDomain
 import SwiftUI
 
 struct ProjectsPlaceholderScreen: View {

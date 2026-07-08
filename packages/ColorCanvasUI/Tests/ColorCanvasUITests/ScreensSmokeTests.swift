@@ -1,5 +1,6 @@
 import XCTest
 import ColorCanvasApplication
+import ColorCanvasDomain
 @testable import ColorCanvasUI
 
 final class ScreensSmokeTests: XCTestCase {
@@ -20,10 +21,6 @@ final class ScreensSmokeTests: XCTestCase {
         for modalRoute in modalRoutes {
             _ = ModalPlaceholderScreen(modalRoute: modalRoute, router: router).body
         }
-    }
-
-    func testHomePlaceholderScreenBodyDoesNotCrash() {
-        _ = HomePlaceholderScreen(router: AppRouter()).body
     }
 
     func testGalleryPlaceholderScreenBodyDoesNotCrash() {

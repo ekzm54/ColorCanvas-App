@@ -1,4 +1,5 @@
 import ColorCanvasApplication
+import ColorCanvasDomain
 import SwiftUI
 
 struct ExportPlaceholderScreen: View {

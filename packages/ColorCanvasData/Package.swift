@@ -15,6 +15,6 @@ let package = Package(
     ],
     targets: [
         .target(name: "ColorCanvasData", dependencies: ["ColorCanvasDomain"]),
-        .testTarget(name: "ColorCanvasDataTests", dependencies: ["ColorCanvasData"])
+        .testTarget(name: "ColorCanvasDataTests", dependencies: ["ColorCanvasData", "ColorCanvasDomain"])
     ]
 )

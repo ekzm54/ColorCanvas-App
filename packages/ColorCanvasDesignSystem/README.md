@@ -35,3 +35,7 @@ Reusable components live under `Components/`: `PrimaryButton`, `SecondaryButton`
 `Previews/PreviewMatrix.swift` renders every component together for visual QA (light, dark, and large Dynamic Type). Every individual component file also carries its own light/dark `#Preview` pair, per the Sprint 002 critical rule "Components must support Light/Dark previews."
 
 Every token value (color, spacing, radius, elevation, animation, opacity) is defined exactly once, inside `Tokens/`. Nothing under `Components/` or `Previews/` contains a raw numeric or color literal — everything routes through `DesignTokens.*`, per Book 4's implementation rule ("Raw colors, fonts, spacing, radius, elevation, and animation values are forbidden outside token definitions").
+
+## Sprint 004
+
+- `Size.featuredTemplateWidth` — one additional sizing token, added because Home's horizontally-scrolling `FeaturedTemplateSection` (`ColorCanvasUI`) needed a fixed card width and none of the existing tokens fit; this keeps that screen free of a magic number rather than leaving the gap unaddressed.

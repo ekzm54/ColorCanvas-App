@@ -12,10 +12,17 @@ let package = Package(
     ],
     dependencies: [
         .package(path: "../ColorCanvasApplication"),
-        .package(path: "../ColorCanvasDesignSystem")
+        .package(path: "../ColorCanvasDesignSystem"),
+        .package(path: "../ColorCanvasDomain")
     ],
     targets: [
-        .target(name: "ColorCanvasUI", dependencies: ["ColorCanvasApplication", "ColorCanvasDesignSystem"]),
-        .testTarget(name: "ColorCanvasUITests", dependencies: ["ColorCanvasUI"])
+        .target(
+            name: "ColorCanvasUI",
+            dependencies: ["ColorCanvasApplication", "ColorCanvasDesignSystem", "ColorCanvasDomain"]
+        ),
+        .testTarget(
+            name: "ColorCanvasUITests",
+            dependencies: ["ColorCanvasUI", "ColorCanvasApplication", "ColorCanvasDomain"]
+        )
     ]
 )

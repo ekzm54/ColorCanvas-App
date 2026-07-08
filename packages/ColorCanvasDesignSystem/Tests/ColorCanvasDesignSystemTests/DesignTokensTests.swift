@@ -88,4 +88,9 @@ final class DesignTokensTests: XCTestCase {
         XCTAssertGreaterThanOrEqual(DesignTokens.ButtonSize.height, 44)
         XCTAssertGreaterThanOrEqual(DesignTokens.ButtonSize.iconOnlyDimension, 44)
     }
+
+    func testSizeTokensArePositive() {
+        XCTAssertGreaterThan(DesignTokens.Size.cardThumbnailHeight, 0)
+        XCTAssertGreaterThan(DesignTokens.Size.featuredTemplateWidth, 0)
+    }
 }

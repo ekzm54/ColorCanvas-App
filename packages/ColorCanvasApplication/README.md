@@ -37,3 +37,14 @@ Use cases and ViewModels that orchestrate domain logic for `ColorCanvasUI`. This
 - `DeepLinkRouter` (`DeepLinking` protocol) — a skeleton URL-to-`Route` mapper (`colorcanvas://gallery?category=X`, `colorcanvas://studio/<projectID>`, etc.). Returns `nil` for anything it doesn't recognize rather than guessing.
 
 `ProjectID`/`TemplateID`/`CategoryID`/`ExportID` used by `Route`/`ModalRoute` are defined in `ColorCanvasDomain` (see its README) since identity is a domain concept — this package only consumes them.
+
+## Sprint 004 — Home Screen (RFC-001)
+
+- `HomeState` (`loading`/`ready(HomeViewData)`/`empty`/`error(AppError)`) — implemented exactly as specified in `Sprint004-Home-Screen.md`'s Required State, not the generic `ScreenState<Value>`; Home's states don't fit that shape (no `idle`, and `empty` is a distinct first-class case from `ready` with no data).
+- `HomeViewData` — the `.ready` payload: `continueProject`, `featuredTemplates`, `categories`, `recentProjects`.
+- `HomeUseCases` (protocol) / `DefaultHomeUseCases` — orchestrates `ProjectRepositoryProtocol` + `TemplateRepositoryProtocol` (both `ColorCanvasDomain`) into a single `loadHome() async throws -> HomeViewData` call. This is the only place that touches the repository protocols — `HomeViewModel` never does.
+- `HomeViewModel` (`@MainActor`) — calls **only** `HomeUseCases` and `AppRouter`, per this sprint's critical rule "HomeViewModel must call UseCases and AppRouter only." Maps `AppError` to a display string via `ErrorMessageMapping` (reused from Sprint 001) rather than the View doing it. Routes: continue/recent project → `.studio`, category → `.gallery(categoryID:)`, template → `.templateDetail` modal, settings → `.settings`, search → `.gallery(categoryID: nil)` (per the sprint's "Search entry may route to Gallery placeholder/search mode" rule).
+
+### Bug fix
+
+The `ColorCanvasApplicationTests` test target's `Package.swift` only listed `ColorCanvasApplication` as a dependency, yet multiple test files (since Sprint 001) explicitly `import ColorCanvasDomain`/`import ColorCanvasShared`. Swift requires every module a file explicitly imports to be a declared dependency of that specific target — this would have failed `swift test` the first time it actually ran on a machine with the toolchain installed. Fixed by adding both to the test target's dependencies.

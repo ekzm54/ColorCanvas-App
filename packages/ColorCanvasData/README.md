@@ -25,3 +25,11 @@ Repository implementations and the FileSystem adapter. This is the outermost dat
 ## Sprint 001
 
 - `UserDefaultsPreferencesRepository` — a safe-default (`bool(forKey:default:)` always falls back to the caller-supplied default when the key is absent) `UserDefaults`-backed implementation of `ColorCanvasDomain`'s `PreferencesRepository`. Constructed only at the app composition root (`apps/ipad`) and injected into `ColorCanvasApplication`'s `DependencyContainer`.
+
+## Sprint 004 — Home Screen (RFC-001)
+
+- `SampleProjectRepository` / `SampleTemplateRepository` — the "Mock Home data" deliverable: in-memory sample-data implementations of `ProjectRepositoryProtocol`/`TemplateRepositoryProtocol`, standing in for real FileManager/Document-backed persistence until later Sprints build it. Constructed only at the app composition root (`apps/ipad`) and injected into `ColorCanvasApplication`'s `DefaultHomeUseCases` — never referenced by `ColorCanvasApplication` or `ColorCanvasUI` directly.
+
+### Bug fix
+
+The `ColorCanvasDataTests` test target's `Package.swift` only listed `ColorCanvasData` as a dependency, yet `UserDefaultsPreferencesRepositoryTests` (Sprint 001) already explicitly `import ColorCanvasDomain`. Fixed by adding `ColorCanvasDomain` to the test target's dependencies.

@@ -11,10 +11,19 @@ struct ColorCanvasApp: App {
         preferences: UserDefaultsPreferencesRepository()
     )
 
+    private let homeUseCases: HomeUseCases = DefaultHomeUseCases(
+        projectRepository: SampleProjectRepository(),
+        templateRepository: SampleTemplateRepository()
+    )
+
     var body: some Scene {
         WindowGroup {
-            RootView(router: dependencyContainer.environment.router)
-                .environmentObject(dependencyContainer.environment)
+            RootView(
+                router: dependencyContainer.environment.router,
+                homeUseCases: homeUseCases,
+                errorMessageMapper: dependencyContainer.environment.errorMessageMapper
+            )
+            .environmentObject(dependencyContainer.environment)
         }
     }
 }

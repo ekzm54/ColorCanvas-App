@@ -2,7 +2,7 @@ import Combine
 
 public final class AppRouter: ObservableObject {
     @Published public var path: [Route] = []
-    @Published public var presentedModal: Route?
+    @Published public var presentedModal: ModalRoute?
 
     public init() {}
 
@@ -19,8 +19,8 @@ public final class AppRouter: ObservableObject {
         path.removeAll()
     }
 
-    public func presentModal(_ route: Route) {
-        presentedModal = route
+    public func presentModal(_ modalRoute: ModalRoute) {
+        presentedModal = modalRoute
     }
 
     public func dismissModal() {

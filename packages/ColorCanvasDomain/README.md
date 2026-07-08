@@ -11,6 +11,7 @@ Platform-agnostic business rules for ColorCanvas: domain entities, value types, 
 - Engine protocols (rendering/safe-color/export contracts consumed by `ColorCanvasApplication`).
 - Pure domain logic and validation rules with no I/O.
 - `AppError` (Sprint 001) — the canonical app-wide error type. Outer layers map their own failures (FileManager errors, engine failures) to `AppError` before crossing into `ColorCanvasApplication`.
+- `Identifier<Tag>` (Sprint 003) — a phantom-typed ID wrapper, plus `ProjectID`/`TemplateID`/`CategoryID`/`ExportID` type aliases. Keeps IDs strongly typed and mutually incompatible (a `ProjectID` cannot be passed where a `TemplateID` is expected) without four near-duplicate structs.
 
 ## What Must Not Belong Here
 

@@ -11,10 +11,11 @@ let package = Package(
         .library(name: "ColorCanvasUI", targets: ["ColorCanvasUI"])
     ],
     dependencies: [
-        .package(path: "../ColorCanvasApplication")
+        .package(path: "../ColorCanvasApplication"),
+        .package(path: "../ColorCanvasDesignSystem")
     ],
     targets: [
-        .target(name: "ColorCanvasUI", dependencies: ["ColorCanvasApplication"]),
+        .target(name: "ColorCanvasUI", dependencies: ["ColorCanvasApplication", "ColorCanvasDesignSystem"]),
         .testTarget(name: "ColorCanvasUITests", dependencies: ["ColorCanvasUI"])
     ]
 )

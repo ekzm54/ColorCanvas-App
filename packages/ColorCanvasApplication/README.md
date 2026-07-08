@@ -24,8 +24,16 @@ Use cases and ViewModels that orchestrate domain logic for `ColorCanvasUI`. This
 
 ## Sprint 001 — Foundation
 
-- `Route` / `AppRouter` — navigation stack + modal state (`push`/`pop`/`popToRoot`/`presentModal`/`dismissModal`). Pure state mutation, no business logic, per the Sprint 001 critical rule "AppRouter must not contain business logic."
 - `ScreenState<Value>` — the required state-enum convention (`idle`/`loading`/`loaded`/`failed`) ViewModels use instead of multiple boolean flags (`AI_RULES.md` rule 6).
 - `ErrorMessageMapping` / `DefaultErrorMessageMapper` — maps `AppError` to a user-facing string for the UI to display.
 - `AppEnvironment` — holds the resolved shared services (`logger`, `preferences`, `errorMessageMapper`, `router`), all protocol-typed.
 - `DependencyContainer` — builds an `AppEnvironment` from concrete `Logging`/`PreferencesRepository` instances supplied by the caller. The container itself never constructs `OSLogger` or `UserDefaultsPreferencesRepository` — only the app composition root (`apps/ipad`) does that, keeping this package decoupled from `ColorCanvasData`.
+
+## Sprint 003 — Navigation & App Shell
+
+- `Route` — push-navigation destinations: `home`, `gallery(categoryID:)`, `projects`, `settings`, `studio(projectID:)`, `export(projectID:)`. Pure data (no `import SwiftUI`, no View reference anywhere), satisfying the critical rule "Route must not contain View."
+- `ModalRoute` — a **separate** type for sheet-presented destinations: `templateDetail`, `colorPicker`, `brushPanel`, `renameProject`, `deleteConfirmation`, `shareSheet`. `AppRouter.presentedModal` is typed `ModalRoute?`, never `Route?` — this is what satisfies "Modal navigation must be separate from push navigation," not just a naming convention.
+- `AppRouter` — unchanged shape from Sprint 001 (`path: [Route]`, `presentedModal: ModalRoute?`, `push`/`pop`/`popToRoot`/`presentModal`/`dismissModal`), now typed against the real route sets above. Still pure state mutation: no `UseCase` calls, no `Repository` access, per this sprint's critical rules.
+- `DeepLinkRouter` (`DeepLinking` protocol) — a skeleton URL-to-`Route` mapper (`colorcanvas://gallery?category=X`, `colorcanvas://studio/<projectID>`, etc.). Returns `nil` for anything it doesn't recognize rather than guessing.
+
+`ProjectID`/`TemplateID`/`CategoryID`/`ExportID` used by `Route`/`ModalRoute` are defined in `ColorCanvasDomain` (see its README) since identity is a domain concept — this package only consumes them.

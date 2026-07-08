@@ -43,5 +43,6 @@ scripts/format.sh   # swiftformat (pass --check to verify without writing)
 
 - Sprint 000 (Project Bootstrap) is complete: repository structure, package skeletons, tooling, and CI are in place.
 - Sprint 001 (Foundation) is complete: `AppEnvironment`, `DependencyContainer`, `AppRouter`/`Route`, `ScreenState`, `AppError`/`ErrorMessageMapper`, a `Logging` skeleton (`OSLogger`), a `PreferencesRepository` skeleton (`UserDefaultsPreferencesRepository`), a `DesignTokens` namespace anchor, and a `RootView` wired to the composition root in `apps/ipad`.
+- Sprint 002 (Design System) is complete: the full token catalog (`Space`, `Radius`, `BorderWidth`, `Elevation`, `AnimationToken`, `OpacityToken`, `IconSize`, `ButtonSize`, `Size`, a light/dark-adaptive semantic `Color` system, `Typography`, `ComponentState`/`ComponentStateToken`) plus reusable components (`PrimaryButton`, `SecondaryButton`, `IconButton`, `ToolButton`, `BaseCard`, `ProjectCardSkeleton`, `TemplateCardSkeleton`, `EmptyStateView`, `ErrorStateView`, `LoadingStateView`) and a `PreviewMatrix`, all in `ColorCanvasDesignSystem`. Not yet consumed by `ColorCanvasUI` — that wiring starts in Sprint 003.
 
-No product features are implemented yet — see `docs/sprints/Sprint-Index.md` in the Docs repository for what comes next (Sprint 002 — Design System).
+No product features are implemented yet — see `docs/sprints/Sprint-Index.md` in the Docs repository for what comes next (Sprint 003 — Navigation & App Shell).

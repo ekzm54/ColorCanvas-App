@@ -1,0 +1,25 @@
+included:
+  - apps
+  - packages
+
+excluded:
+  - "**/.build"
+  - "**/.swiftpm"
+  - "**/DerivedData"
+
+opt_in_rules:
+  - force_unwrapping
+
+force_cast: error
+force_try: error
+
+line_length:
+  warning: 120
+  error: 160
+
+custom_rules:
+  no_empty_catch:
+    name: "Empty catch block"
+    regex: 'catch(\s+\w+)?\s*\{\s*\}'
+    message: "Empty catch blocks are forbidden — handle or propagate the error (Book 8 / AI_RULES)."
+    severity: error

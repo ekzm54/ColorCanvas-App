@@ -1,0 +1,63 @@
+name: ColorCanvas
+options:
+  bundleIdPrefix: com.colorcanvas
+  deploymentTarget:
+    iOS: "17.0"
+
+configs:
+  Debug: debug
+  Release: release
+
+packages:
+  ColorCanvasUI:
+    path: ../../packages/ColorCanvasUI
+  ColorCanvasApplication:
+    path: ../../packages/ColorCanvasApplication
+  ColorCanvasDomain:
+    path: ../../packages/ColorCanvasDomain
+  ColorCanvasDesignSystem:
+    path: ../../packages/ColorCanvasDesignSystem
+  ColorCanvasCanvasEngine:
+    path: ../../packages/ColorCanvasCanvasEngine
+  ColorCanvasSafeColor:
+    path: ../../packages/ColorCanvasSafeColor
+  ColorCanvasDocument:
+    path: ../../packages/ColorCanvasDocument
+  ColorCanvasData:
+    path: ../../packages/ColorCanvasData
+  ColorCanvasExport:
+    path: ../../packages/ColorCanvasExport
+  ColorCanvasResources:
+    path: ../../packages/ColorCanvasResources
+  ColorCanvasTesting:
+    path: ../../packages/ColorCanvasTesting
+  ColorCanvasShared:
+    path: ../../packages/ColorCanvasShared
+
+targets:
+  ColorCanvas:
+    type: application
+    platform: iOS
+    sources:
+      - path: ColorCanvasApp
+    info:
+      path: ColorCanvasApp/Info.plist
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: com.colorcanvas.app
+        TARGETED_DEVICE_FAMILY: "2"
+        SWIFT_VERSION: "5.10"
+        IPHONEOS_DEPLOYMENT_TARGET: "17.0"
+        SUPPORTS_MACCATALYST: "NO"
+    dependencies:
+      - package: ColorCanvasUI
+
+schemes:
+  ColorCanvas:
+    build:
+      targets:
+        ColorCanvas: all
+    run:
+      config: Debug
+    archive:
+      config: Release
